@@ -16,8 +16,8 @@
 #   $ SSL=yes script/test net_http -- -n /ssl/
 set -e
 
-if ! grep bundler/setup <<<"$RUBYOPT" >/dev/null; then
-  export RUBYOPT="$RUBYOPT -rubygems -rbundler/setup"
+if [[ "$RUBYOPT" != *"bundler/setup"* ]]; then
+  export RUBYOPT="-rbundler/setup $RUBYOPT"
 fi
 
 port=3999
