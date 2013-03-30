@@ -47,12 +47,16 @@ start_server() {
   echo $!
 }
 
+timestamp() {
+  date +%s
+}
+
 wait_for_server() {
-  timeout=$(( `date +%s` + $1 ))
+  timeout=$(( `timestamp` + $1 ))
   while true; do
     if lsof -i :$port > /dev/null; then
       break
-    elif [ `date +%s` -gt "$timeout" ]; then
+    elif [ `timestamp` -gt "$timeout" ]; then
       echo "timed out after $1 seconds" >&2
       return 1
     fi
@@ -98,7 +102,9 @@ fi
 # If there are any adapter tests, spin up the HTTP server
 if [ -n "$(filter_matching "adapters" "${test_files[@]}")" ]; then
   server_pid=$(start_server)
+  t=$(timestamp)
   wait_for_server 15
+  echo "started after $((`timestamp` - $t)) seconds"
   cleanup() {
     kill "$server_pid"
   }
