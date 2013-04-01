@@ -3,7 +3,7 @@ module Gem
   module Version
     def self.new(str) str.to_s end
   end
-end
+end unless defined? Gem
 require 'simplecov'
 require 'coveralls'
 
