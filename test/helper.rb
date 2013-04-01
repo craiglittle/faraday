@@ -1,9 +1,5 @@
 # simplecov-html has a dependency on Gem::Version
-module Gem
-  module Version
-    def self.new(str) str.to_s end
-  end
-end unless defined? Gem
+require 'rubygems/version'
 require 'simplecov'
 require 'coveralls'
 
