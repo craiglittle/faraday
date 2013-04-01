@@ -1,4 +1,5 @@
 # simplecov-html has a dependency on Gem::Version
+module Gem; end
 require 'rubygems/version'
 require 'simplecov'
 require 'coveralls'
