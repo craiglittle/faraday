@@ -102,9 +102,7 @@ fi
 # If there are any adapter tests, spin up the HTTP server
 if [ -n "$(filter_matching "adapters" "${test_files[@]}")" ]; then
   server_pid=$(start_server)
-  t=$(timestamp)
-  wait_for_server 120
-  echo "started after $((`timestamp` - $t)) seconds"
+  wait_for_server 15
   cleanup() {
     kill "$server_pid"
   }
