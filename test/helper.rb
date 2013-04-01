@@ -28,14 +28,6 @@ Dir[File.expand_path('../../lib/faraday/r*/*', __FILE__)].each do |file|
   require file
 end
 
-begin
-  require 'ruby-debug'
-rescue LoadError
-  # ignore
-else
-  Debugger.start
-end
-
 require 'stringio'
 require 'uri'
 
